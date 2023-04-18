@@ -1,0 +1,87 @@
+﻿<Window x:Class="modul4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helpers="clr-namespace:modul4.Helpers"
+        xmlns:local="clr-namespace:modul4"
+        xmlns:vms="clr-namespace:modul4.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="575" Width="982">
+    <Window.Resources>
+        <helpers:LicenseToColorConverter x:Key="colorconverter"/>
+    </Window.Resources>
+    <Window.DataContext>
+        <vms:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox Grid.Column="0" ItemsSource="{Binding Racers}" SelectedItem="{Binding SelectedFromRacers}" HorizontalContentAlignment="Stretch" >
+            <!--<ListBox.DataContext>
+                <vms:MainWindowViewModel></vms:MainWindowViewModel>
+            </ListBox.DataContext>-->
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <Grid Background="{Binding HasLicense, Converter={StaticResource colorconverter}}" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                            <Label Content="{Binding Name}" FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="0" />
+                            <Label Content="{Binding PersonalRecord}" ContentStringFormat="PR: {0}" Grid.Row="1" Grid.Column="0" />
+                            <Label Content="{Binding ThisYearBest}" ContentStringFormat="Best this year: {0}" Grid.Row="1" Grid.Column="1" />
+                            <Label Content="{Binding Club}" ContentStringFormat="Club: {0}" Grid.Row="1" Grid.Column="2" />
+                            <Label Content="{Binding RaceNumber}" ContentStringFormat="Race number: {0}" Grid.Row="2" Grid.Column="0" />
+                            <Label Content="{Binding MarketValue}" ContentStringFormat="Market value: {0}" Grid.Row="2" Grid.Column="1" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Grid.Column="1" ItemsSource="{Binding Tournament}" SelectedItem="{Binding SelectedFromTournament}" HorizontalAlignment="Stretch" SelectionChanged="ListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Label Content="{Binding Name}" FontSize="14" FontWeight="Bold" Grid.Row="0" Grid.Column="0" />
+                        <Label Content="{Binding Club}" ContentStringFormat="Club: {0}" Grid.Row="1" Grid.Column="0" />
+                        <Label Content="{Binding RaceNumber}" ContentStringFormat="Race Number: {0}" Grid.Row="1" Grid.Column="1"/>
+                        <Label Content="{Binding PersonalRecord}" ContentStringFormat="PR: {0}" Grid.Row="1" Grid.Column="2" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="2">
+            <Button Content="Load" Margin="10" Padding="10" FontSize="14" Command="{Binding LoadRacersCommand}"></Button>
+            <Button Content="Add To Tournament" Command="{Binding AddToTournamentCommand}" Margin="10" Padding="10" FontSize="14" />
+            <Button Content="Remove From Tournament" Command="{Binding RemoveFromTournamentCommand}" Margin="10" Padding="10" FontSize="14" />
+            <Button Content="Display Racer" Command="{Binding DisplayRacerCommand}" Margin="10" Padding="10" FontSize="14" />
+            <Label Content="Name for saved tournament:" Margin="10" Padding="10" FontSize="14" HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1"/>
+            <TextBox Text="{Binding SaveName}" Padding="10" Margin="10" HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" FontSize="14"/>
+            <Label Content="Date for saved tournament:" Margin="10" Padding="10" FontSize="14" HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1"/>
+            <TextBox Text="{Binding SaveDate}" Padding="10" Margin="10" HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1" FontSize="14"/>
+            <Button Content="Save Trounament" Margin="10" Padding="10" FontSize="14" Command="{Binding SaveTrounamentCommand}"></Button>
+        </StackPanel>
+
+    </Grid>
+</Window>

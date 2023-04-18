@@ -1,0 +1,30 @@
+﻿<Window x:Class="modul4.RacerDisplay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:modul4"
+        xmlns:vms="clr-namespace:modul4.ViewModels"
+        mc:Ignorable="d"
+        Title="RacerDisplay" Height="640" Width="355">
+    <Window.DataContext>
+        <vms:RacerDisplayViewModel></vms:RacerDisplayViewModel>
+    </Window.DataContext>
+    <StackPanel x:Name="stack">
+        <Label Content="Name" Padding="10" Background="LightBlue" />
+        <Label Content="{Binding Actual.Name}" Padding="10" Margin="10"/>
+        <Label Content="Club" Padding="10" Background="LightBlue" />
+        <Label Content="{Binding Actual.Club}" Padding="10" Margin="10"/>
+        <Label Content="Personal Record" Padding="10" Background="LightBlue" />
+        <Label Content="{Binding Actual.MarketValue}" Padding="10" Margin="10"/>
+        <Label Content="This Year's Best" Padding="10" Background="LightBlue" />
+        <Label Content="{Binding Actual.HasLicense}" Padding="10" Margin="10"/>
+        <Label Content="Has License" Padding="10" Background="LightBlue" />
+        <Label Content="{Binding Actual.PersonalRecord}" Padding="10" Margin="10"/>
+        <Label Content="Race Number" Padding="10" Background="LightBlue" />
+        <Label Content="{Binding Actual.ThisYearBest}" Padding="10" Margin="10"/>
+        <Label Content="Market Value" Padding="10" Background="LightBlue" />
+        <Label Content="{Binding Actual.RaceNumber}" Padding="10" Margin="10"/>
+        <Button Content="Close" Padding="10" Click="Button_Click"  />
+    </StackPanel>
+</Window>
